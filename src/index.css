@@ -1,13 +1,182 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Open+Sans:wght@300&display=swap');
+
+/*Custom properties*/
+:root {
+  --dark-color: #252323;
+  --purple-solid: #350a4f;
+  --purple-transparent: rgba(53, 10, 79, .7);
+  --purple-transparent-alt: rgba(53, 10, 79, .4);
+  --purple-light: #8f50fb;
+  --yellow-solid: #fa9e2c;
+  --gradient-color: linear-gradient(to right, var(--yellow-solid), var(--purple-light));
+  --gradient-color-alt: linear-gradient(to right, var(--purple-light), var(--yellow-solid));
+}
+*{
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+}
+body{
+  font-family: 'Courgette', cursive;
+  /* font-family: 'Open Sans', sans-serif; */
+  background-color: var(--dark-color);
+}
+  
+
+/* Navigation bar */
+.nav {
+  width: 100%;
+  height: 100px;
+  justify-content: space-between;
+  position: absolute;
+  
+  background-color: #200a4f;
+  display: flex;
+  background: transparent;
+  z-index: 10;
+
+
+
+}
+.logo{
+  color: var(--purple-transparent);
+  
+  padding-left: 2rem;
+  padding-bottom: 1rem;
+
+}
+.logo h2{
+  font-family: 'Courgette';
+  font-size: 2rem;
+}
+.lists {
+ 
+  display: flex;
+  flex-direction: row;
+  padding: 2rem;
+
+
+}
+.lists li {
+  list-style: none;
+  font-size: large;
+  color: white;
+  font-family: 'Courgette';
+  padding-left: 4rem;
+
+
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Movies catagory */
+.cards {
+  display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   padding-top: 2rem;
+  
+
 }
+.card{
+  width: 15rem;
+  height: 20rem;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  padding: 1rem ;
+  justify-items: center;
+  
+  
+  
+}
+
+
+.poster {
+  width: 15rem;
+  height: 20rem;
+  position: absolute;
+  z-index: -2;
+  border-radius: 1rem 3rem;
+  
+  
+  
+}
+.poster img{
+  width: 15rem; 
+  height: 20rem;
+  border-radius: 1rem 3rem;
+  
+  
+  
+  
+}
+.poster::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--purple-transparent-alt);
+  z-index: 5;
+  border-radius: 1rem 3rem;
+}
+.backdrop {
+  width: 15rem;
+  height: 20rem;
+  position: absolute;
+  z-index: -2;
+  display: none;
+  
+  
+  
+}
+.card h3 {
+  position: absolute;
+  z-index: 10;
+  top: 5%;
+  left: 25%;
+  width: 50%;
+  color: #fff;
+  font-family:'Courgette', cursive;
+  font-size: 13px;
+  
+
+}
+.card span {
+  position: absolute;
+  z-index: 10;
+  bottom: 5%;
+  left: 80%;
+  color: #fff;
+  font-family: 'Courgette';
+  font-size: 13px;
+}
+p{
+  display: none;
+}
+
+
+/* Popular Movie slides */
+
+.slide_item{
+  width: 100%;
+  height: 100vh;
+ 
+  
+  
+
+}
+.popSlide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--purple-transparent-alt);
+  z-index: 5;
+}
+
+
+
+
