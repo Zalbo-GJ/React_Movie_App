@@ -1,16 +1,29 @@
-
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Movies from './components/movies';
+import Movies from './components/movie';
 import Nav from './components/nav';
-import Pop from './components/latest';
+import TvSeries from './components/tv';
+import Home from './components/home';
+
 function App() {
   return (
-    <div className="App">
-      <Nav />
-      <Pop />
-      <Movies />
+    <Router>
+
+      <div className="App">
       
-    </div>
+        <Nav />
+
+        <Routes>
+
+          <Route exact path='/' element={<Home />}/>
+          <Route exact path='/movie' element={<Movies />}/>
+          <Route  path='/tv' element={<TvSeries />}/>
+            
+        </Routes>
+        
+      </div>
+    
+     </Router>
   );
 }
 

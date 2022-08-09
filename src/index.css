@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Open+Sans:wght@300&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100;300;500&family=Sora:wght@200;400&family=Source+Sans+Pro&display=swap');
 /*Custom properties*/
 :root {
-  --dark-color: #252323;
+  --dark-color: #1a191f;
   --purple-solid: #350a4f;
   --purple-transparent: rgba(53, 10, 79, .7);
   --purple-transparent-alt: rgba(53, 10, 79, .4);
@@ -10,14 +10,16 @@
   --yellow-solid: #fa9e2c;
   --gradient-color: linear-gradient(to right, var(--yellow-solid), var(--purple-light));
   --gradient-color-alt: linear-gradient(to right, var(--purple-light), var(--yellow-solid));
+  --nav-font: 'Sora';
+  --para-font: 'Source Sans Pro', sans-serif;
+
 }
 *{
   margin: 0;
   padding: 0;
 }
 body{
-  font-family: 'Courgette', cursive;
-  /* font-family: 'Open Sans', sans-serif; */
+  font-family: var(--nav-font);
   background-color: var(--dark-color);
 }
   
@@ -38,15 +40,21 @@ body{
 
 }
 .logo{
-  color: var(--purple-transparent);
-  
+  color: rgba(255, 0, 0, 0.487);
+/*   
   padding-left: 2rem;
-  padding-bottom: 1rem;
+  padding-top: 1.5rem; */
+ 
+
 
 }
 .logo h2{
-  font-family: 'Courgette';
+  font-family: var(--nav-font);
   font-size: 2rem;
+  padding: 0.2rem 1rem;
+  margin: 1.5rem 1rem;
+  border-radius: 1rem ;
+  /* background-color: #e0e0e07c; */
 }
 .lists {
  
@@ -59,8 +67,9 @@ body{
 .lists li {
   list-style: none;
   font-size: large;
-  color: white;
-  font-family: 'Courgette';
+  /* color: #e0e0e0; */
+  color: red;
+  font-family: var(--nav-font);
   padding-left: 4rem;
 
 
@@ -95,7 +104,7 @@ body{
   height: 20rem;
   position: absolute;
   z-index: -2;
-  border-radius: 1rem 3rem;
+  border-radius: 1rem ;
   
   
   
@@ -103,7 +112,7 @@ body{
 .poster img{
   width: 15rem; 
   height: 20rem;
-  border-radius: 1rem 3rem;
+  border-radius: 1rem ;
   
   
   
@@ -116,9 +125,9 @@ body{
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--purple-transparent-alt);
-  z-index: 5;
-  border-radius: 1rem 3rem;
+  /* background-color: var(--purple-transparent-alt); */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 10%, rgba(26, 25, 31, 1) 99%);  z-index: 5;
+  border-radius: 1rem 0 0 0 ;
 }
 .backdrop {
   width: 15rem;
@@ -130,15 +139,17 @@ body{
   
   
 }
-.card h3 {
+.card h4 {
   position: absolute;
   z-index: 10;
-  top: 5%;
-  left: 25%;
-  width: 50%;
-  color: #fff;
-  font-family:'Courgette', cursive;
-  font-size: 13px;
+  top: 4.5%;
+  left: 75%;
+  color: #e0e0e0;
+  font-family: var(--nav-font);
+  font-size: 12px;
+  background-color: red;
+  border-radius: 8px;
+  padding: 3px 5px;
   
 
 }
@@ -147,13 +158,23 @@ body{
   z-index: 10;
   bottom: 5%;
   left: 80%;
-  color: #fff;
-  font-family: 'Courgette';
+  color: #e0e0e0;
+  font-family: var(--para-font);
   font-size: 13px;
+  
 }
-p{
-  display: none;
+.card h3 {
+  position: absolute;
+  z-index: 10;
+  bottom: 5%;
+  left: 10%;
+  width: 50%;
+  color: #e0e0e0;
+  font-family: var(--para-font);
+  font-size: 13px;
+
 }
+
 
 
 /* Popular Movie slides */
@@ -166,17 +187,76 @@ p{
   
 
 }
-.popSlide::before {
+.slide_item::before {
   content: "";
   position: absolute;
-  top: 0;
+  top: 0%;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--purple-transparent-alt);
-  z-index: 5;
+  /* background-color: var(--purple-transparent-alt); */
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(26, 25, 31, 1) 99%); 
+  z-index: 2;
 }
 
+.slide_cont{
+  color: #e0e0e0;
+  position: absolute;
+  top: 65%;
+  left: 4%;
+  z-index: 10;
+  width: 40%;
+}
+.slide_cont span{
+  display: inline-flex;
+  padding: 0.5rem;
+  font-family: var(--para-font);
+  
+}
+.slide_cont li{
+  padding-left: 1rem;
+}
+.slide_cont h2{
+  font-size: 2rem;
+
+}
+.slide_cont p{
+  font-size: 17px;
+  word-wrap: break-word;
+  font-family: var(--para-font);
+
+}
+.slide_poster{
+  width:10rem;
+  height:20rem;
+  position: absolute;
+  top: 20%;
+  right: 20%;
+  z-index: 10;
+  border-radius: 20px;
+  box-shadow: 120px 130px 90px 100px rgba(0, 0, 0, 0.785), 50px 50px 150px 60px rgba(255, 255, 255, 0.546);
+}
+.slide_poster img{
+  object-fit: cover;
+  width: 20rem;
+  
+  z-index: 10;
+  border-radius: 20px;
+}
+
+
+
+
+/* Tv series Section */
+
+.series{
+  padding-top: 5rem;
+}
+button{
+  color: red; 
+  width: 5rem;
+  z-index: 20;
+}
 
 
 
