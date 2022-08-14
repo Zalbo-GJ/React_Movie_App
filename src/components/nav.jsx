@@ -16,7 +16,7 @@ function Nav() {
         
         <div className="nav">
             <div className="logo" >
-                <h2>M<span style={{paddingLeft:'3px', position: 'Relative', top:'4px'}}><MdOutlineSlowMotionVideo style={{color: '#fe4c40'}} /></span>VIE</h2>
+              <Link style={{textDecoration: 'none', color: "rgba(255, 0, 0, 0.487)"}} to="/" > <h2>M<span style={{paddingLeft:'3px', position: 'Relative', top:'4px'}}><MdOutlineSlowMotionVideo style={{color: '#fe4c40'}} /></span>VIE</h2></Link>
             </div>
             <div className={clicked? 'lists-active': 'lists'}>
                <Link style={{textDecoration: 'none',margin: "1rem"}} to="/"><li onClick={()=> setClicked(false)}>Home</li></Link>
