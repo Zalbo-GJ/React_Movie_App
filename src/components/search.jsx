@@ -1,82 +1,52 @@
-import { useEffect, useState} from 'react';
-
+import { useEffect, useState } from "react";
+import { FiSearch } from 'react-icons/fi';
 import { AiFillStar } from 'react-icons/ai';
 import { BiArrowBack } from 'react-icons/bi';
-import { FcNext, FcPrevious } from 'react-icons/fc';
-import Nav from './nav';
 
-const img_api = 'https://image.tmdb.org/t/p/original';
-function Movies() { 
-    
-    
-    const [movie, setMovies] = useState([]);
-    const [page, set_page] = useState(1);
-    const [movieId, setMovieId] = useState();
+
+import { Link } from 'react-router-dom';
+
+
+function Search() {
+        const img_api = 'https://image.tmdb.org/t/p/original';
+         const [search,setSearch] = useState('');
+    const [result, setResult] = useState();
+    const [done, setDone] = useState(false);
+    const [type, setType] = useState('tv');
+     const [movieId, setMovieId] = useState();
     const [show,setShow]= useState(true);
+  
 
-    useEffect(() => {
-
-        getMovie();
-        // setShow(true)
-
-    }, []);
-    useEffect(() => {
-
-        getMovie();
-
-    }, [page]);
     
-   
 
-    const getMovie = async () => {
+    useEffect(() => {
+       getSearch();
+        
+       
+    },[search])
+    useEffect(() => {
+        console.log(done)
+        getSearch();
 
-        const api = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`);
+
+    },[done])
+
+       const getSearch = async () => {
+
+        const api = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_API_KEY}&query=${search}&page=1`);
         const data = await api.json();
-        setMovies(data.results);
+        setResult(data.results);
         console.log(data);
     }
-
-    const showDetail=(pid)=>{
+       const showDetail=(pid,med)=>{
         console.log(pid);
+        setType(med);
         setMovieId(pid)
         setShow(false);
        
     }
+  
 
-    function Mov() {
-        return ( <div>
-                <h2 className='h2'>Movies</h2>
-                <div className="page-changer">
-                  <button onClick={() => page > 1? set_page(page-1) : false }><FcPrevious style={{color: 'red', fontSize: '2rem'}} /> </button>                    
-                  <button onClick={() => set_page(page+1)}><FcNext style={{color: '#fe4c40', fontSize: '2rem'}} /> </button>                    
-                   
-                    </div>
-                <div className="series">
-                 
-                    
-                    <div className="cards" >
-                         {movie.map((results, i) => {
-                              return(
-                             <div className="card"  key={i}>
-                            <div className="poster"  onClick={() => showDetail(results.id)}>
-
-                                    <img src={img_api+results.poster_path} alt={results.title}
-                                    />
-                                    </div>
-                                    
-                                    <h3 >{results.title}</h3>
-                                    <h4>{results.release_date.slice(0,4)}</h4>
-                                    <span><AiFillStar style={{color : "red"}}/>{results.vote_average.toFixed(1)}</span>
-                                    {/* <p>{results.overview}</p> */}
-                                </div>
-                )
-            })}
-        </div>
-        </div>
-       </div> );
-    }
-
-    
     function Detail() {
 
     const [detail, setDetail] = useState([])
@@ -88,9 +58,9 @@ function Movies() {
     },[])
 
    const  getDetail = async ()=> {
-        const api = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`);
-        const similar_api = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`);
-        const casts_api = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${process.env.REACT_APP_API_KEY}`);
+        const api = await fetch(`https://api.themoviedb.org/3/${type}/${movieId}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`);
+        const similar_api = await fetch(`https://api.themoviedb.org/3/${type}/${movieId}/similar?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`);
+        const casts_api = await fetch(`https://api.themoviedb.org/3/${type}/${movieId}/credits?api_key=${process.env.REACT_APP_API_KEY}`);
         const data = await api.json();
         const sim = await similar_api.json();
         const cat = await casts_api.json();
@@ -105,8 +75,8 @@ function Movies() {
     
     return (
 
- <div>
-<div className="detail"
+            <div>
+            <div className="detail"
         style={{backgroundImage: `url( ${backimg})`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover"}}>
@@ -174,27 +144,68 @@ function Movies() {
        
       );
 }
-   
 
- 
-    return ( 
+
+    function Srch(){
+        return(
+            <div>
+                
         
-        <div>
-           
-           { show && <Mov />}
-
-           { !show && <Detail />}
-            
-       
+                
+            <div className="disp">
              
- </div>
+            
+                {done &&
+                
+               
+                <div className="srch-cont">
+                 
+                    
+                    <div className="srch-results">
+                         {result.map((results, i) => {
+                              return(
+                             <div className="card" key={i}>
+                                <div className="poster" onClick={() =>{ showDetail(results.id,results.media_type) }}>
+                                    <img src={img_api+results.poster_path} alt={results.name}
+                                    />
+                                 </div>
+                                    
+                                   
+                                    
+                                    
+                           </div>
+                            )
+                        })}
+                </div>
+                </div>
+}</div>
+
+        
+       </div>
+
+            
+        );
+    }
+  
+    return ( 
+
+
+        <div >
+
+            {show &&    <div className="srch-bar">
+                
+                <input type="search"  onChange={e => setSearch(e.target.value) }  onEmptied={()=> setDone(false)}  />
+                <Link to='/srch'>  <button  onClick={()=> search.length >2? setDone(true) : setDone(false)}><FiSearch /></button></Link>
+                
+</div>}
+        
+         
+         {show && <Srch />}
+         {!show && <Detail />}
+         
+    
+</div>
      );
 }
 
-
-
-
-
-
-
-export default Movies;
+export default Search;

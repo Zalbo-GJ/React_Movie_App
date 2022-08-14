@@ -38,7 +38,7 @@ function Pop() {
            <Swiper
             modules={[Autoplay,Navigation, Pagination, Scrollbar, A11y]}
             grabCursor={true}
-            autoplay={{ delay: 40000}}
+            autoplay={{ delay: 4000}}
             spaceBetween={0}
             slidesPerView={1}
             // navigation={true}
